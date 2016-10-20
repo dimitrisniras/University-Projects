@@ -11,42 +11,42 @@ int main()
     k=1;
 
     do {
-        printf("Dwse timh gia thn r1: ");
+        printf("Give r1: ");
         scanf("%f",&r1);
-        printf("Dwse timh gia thn r2: ");
+        printf("Give r2: ");
         scanf("%f",&r2);
-        printf("Dwse timh gia thn r3: ");
+        printf("Give r3: ");
         scanf("%f",&r3);
-        printf("Dwse timh gia thn r4: ");
+        printf("Give r4: ");
         scanf("%f",&r4);
         if (r1>=r3) {
-            printf("Prepei r1<r3\n");
+            printf("Must r1<r3\n");
         }
         if (r2>=r4) {
-            printf("Prepei r2<r4\n");
+            printf("Must r2<r4\n");
         }
     } while(r1>=r3 || r2>=r4);
 
     do {
-        printf("Dwse timh gia to apothema twn antistasewn: ");
+        printf("Enter n: ");
         scanf("%d",&n);
         if (n<=0) {
-            printf("To apo8ema twn antistasewn prepei na einai 8etiko!\n");
+            printf("n must be positive!\n");
         }
     } while (n<=0);
-    printf("Dwse timh gia thn tash V tou susthmatos: ");
+    printf("Enter V: ");
     scanf("%f",&V);
     if ((r3-r2)<=0) {
         for (i=1; i<=n; i++) {
             float R, i_max, i_ant;
             do {
-                printf("Dwse timh gia thn antistash: ");
+                printf("Enter value of resistor: ");
                 scanf("%f",&R);
                 if (R<r1 || R>r4) {
-                    printf("H timh ths antistashs prepei na brisketai sto sunolo (%f , %f)U(%f , %f)\n",r1,r2,r3,r4);
+                    printf("Value of resistor must be at (%f , %f)U(%f , %f)\n",r1,r2,r3,r4);
                 }
             } while (R<r1 || R>r4);
-            printf("Dwse timh gia th megisth entash pou diarreei thn antistash: ");
+            printf("Give maximum intensity: ");
             scanf("%f",&i_max);
             i_ant=(V/R);
             if (i_ant<i_max) {
@@ -79,14 +79,14 @@ int main()
             int k=1;
 
             do {
-            printf("Dwse timh gia thn antistash: ");
+            printf("Enter value of resistor: ");
             scanf("%f",&R);
             if (R<r1 || R>r4) {
-                printf("H timh ths antistashs prepei na brisketai sto sunolo (%f , %f)U(%f , %f)\n",r1,r2,r3,r4);
+                printf("Value must be at (%f , %f)U(%f , %f)\n",r1,r2,r3,r4);
           }
           } while (R<r1 || R>r4);
 
-            printf("Dwse timh gia th megisth entash pou diarreei thn antistash: ");
+            printf("Give maximum intensity: ");
             scanf("%f",&i_max);
             i_ant=V/R;
 
@@ -102,12 +102,12 @@ int main()
             }
         }
     }
-    printf("H omada 1 perilambanei %d antistaseis.\n",r1_r2);
-    printf("H omada 2 perilambanei %d antistaseis.\n",r3_r4);
-    printf("H olikh antistash ths omadas 1 einai:%f Ohm\n",R1ol);
+    printf("Team 1 has %d resistors.\n",r1_r2);
+    printf("Team 2 has %d resistors.\n",r3_r4);
+    printf("Total resistor of team 1 is:%f Ohm\n",R1ol);
     if (R2ol!=0)
-    printf("H olikh antistash ths omadas 2 einai:%f Ohm\n\n",(1/R2ol));
+    printf("Total resistor of team 2 is:%f Ohm\n\n",(1/R2ol));
     else
-    printf("H olikh antistash ths omadas 2 einai:0 Ohm\n\n");
+    printf("Total resistor of team 2 is:0 Ohm\n\n");
     return 0;
 }
