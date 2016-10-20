@@ -8,23 +8,23 @@ void main()
     float min_dis,X[MAX],Y[MAX],X_center=0,Y_center=0,max_dis=0,riza_xy,R,x,y,center_dis,uf_dis;
 
     do {
-    printf("Dwse ton ari8mo twn ufalwn ths perioxhs: ");
+    printf("Enter number of shelfs: ");
     scanf("%d",&ar_uf);
     if (ar_uf<=0 || ar_uf>MAX)
-        printf("O ari8mos twn ufalwn prepei na einai anamesa sto 0 kai sto %d\n",MAX);
+        printf("Number of shelfs must be 0 and %d\n",MAX);
     } while (ar_uf<=0 || ar_uf>MAX);
 
     do {
-    printf("Dwse thn elaxisth apostash asfaleias: ");
+    printf("Enter minimum safe distance: ");
     scanf("%f",&min_dis);
     if (min_dis<0)
-        printf("H elaxisth apostash asfaleias prepei na einai 8etikh h mhden/n");
+        printf("Minimum safe distance must be positive or zero/n");
     } while (min_dis<0);
 
     for (i=0; i<ar_uf; i++) {
-        printf("Dwse thn tetmhmenh X tou ufalou: ");
+        printf("Enter coordinate X of shelf: ");
         scanf("%f",&X[i]);
-        printf("Dwse thn tetagmenh Y tou ufalou: ");
+        printf("Enter coordinate Y of shelf: ");
         scanf("%f",&Y[i]);
         X_center+=(X[i]/ar_uf);
         Y_center+=(Y[i]/ar_uf);
@@ -41,26 +41,26 @@ void main()
     for (; ;) {
         int ep_uf=0;
 
-        printf("Dwse thn tetmhmenh x tou ploiou: ");
+        printf("Enter coordinate X of ship: ");
         scanf("%f",&x);
-        printf("Dwse thn tetagmenh y tou ploiou: ");
+        printf("Enter coordinate Y of ship: ");
         scanf("%f",&y);
         center_dis=sqrt(pow((X_center-x),2)+pow((Y_center-y),2));
         if (center_dis<=R) {
             flag=1;
-            printf("Briskestai se epikindunh perioxh me ufalous.\n\n");
+            printf("Dangerous field with shelfs.\n\n");
             for (i=0; i<ar_uf; i++) {
                 uf_dis=sqrt(pow((X[i]-x),2)+pow((Y[i]-y),2));
                 if (uf_dis<=min_dis) {
                     ep_uf+=1;
-                    printf("PROSOXH!!! To ploio brisketai se epikindunh apostash %f metrwn apo ton ufalo me suntetagmenes (%f,%f).\n\n",uf_dis,X[i],Y[i]);
+                    printf("DANGER!!! The ship is only %f metres from shelf with coordinates (%f,%f).\n\n",uf_dis,X[i],Y[i]);
                 }
             }
-            printf("Oi ufaloi pou briskontai se epikindunh apostash apo to ploio einai: %d\n\n",ep_uf);
+            printf("The shelfs that are in dangerous position with the ship are: %d\n\n",ep_uf);
         }
         else {
             if (flag==1) {
-            printf("Eksodos apo epikindunh perioxh me ufalous!");
+            printf("Exit from dangerous field with shelfs!");
             break;
             }
         }
