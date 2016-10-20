@@ -1,0 +1,1 @@
+This is a simple C++ program that computes how much energy must an electricity factory produce in an island with wind and sun machines.
