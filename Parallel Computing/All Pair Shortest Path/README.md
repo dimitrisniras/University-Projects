@@ -1,0 +1,1 @@
+Two parallel implentations of All Pair Shortest Path algorithm using CUDA. The second implementation is improved compared to first because it uses coalesced memory access.
