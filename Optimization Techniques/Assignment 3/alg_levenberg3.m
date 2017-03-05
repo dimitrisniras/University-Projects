@@ -1,0 +1,23 @@
+function r=alg_levenberg3(e,co)
+k=1;
+r(:,k)=co;
+g=0.5;
+while(norm(gradf(r(1,k),r(2,k)))>=e)
+    h=hessianf(r(1,k),r(2,k));
+    m=max(abs(eig(h)));
+    mk=1.1*m;
+    A=h+mk*eye(2);
+    if(k>=4)
+        if(f(r(1,k),r(2,k))>0.9*f(r(1,k-3),r(2,k-3)))
+            g=1.2*g;
+        end
+    end
+    b=-g*gradf(r(1,k),r(2,k));
+    y=A\b;
+    r(:,k+1)=r(:,k)+y;
+    k=k+1;
+    if(k>100000)
+      break;
+    end
+end
+end

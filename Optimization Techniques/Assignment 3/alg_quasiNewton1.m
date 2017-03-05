@@ -1,0 +1,20 @@
+function r=alg_quasiNewton1(e,co)
+k=1;
+r(:,k)=co;
+D(:,:,k)=eye(2,2);
+g=0.5;
+while(norm(gradf(r(1,k),r(2,k)))>=e)
+    d(:,k)=-D(:,:,k)*gradf(r(1,k),r(2,k));
+    r(:,k+1)=r(:,k)+g*d(:,k);
+    p(:,k)=r(:,k+1)-r(:,k);
+    q(:,k)=gradf(r(1,k+1),r(2,k+1))-gradf(r(1,k),r(2,k));
+    t(k)=q(:,k)'*D(:,:,k)*q(:,k);
+    v(:,k)=(p(:,k)/(p(:,k)'*q(:,k)))-(D(:,:,k)*q(:,k))/t(k);
+    D(:,:,k+1)=D(:,:,k)+(p(:,k)*p(:,k)')/(p(:,k)'*q(:,k))-...
+    -(D(:,:,k)*q(:,k)*q(:,k)'*D(:,:,k))/t(k)+(t(k)*v(:,k)*v(:,k)');
+    k=k+1;
+    if(k>100000)
+        break;
+    end
+end
+end
