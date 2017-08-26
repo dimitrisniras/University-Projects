@@ -1,1 +1,0 @@
-Assembly programs based on MIPS architecture.

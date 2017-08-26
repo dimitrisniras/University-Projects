@@ -1,1 +1,0 @@
-Travelling Merchant problem based on C.

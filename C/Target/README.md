@@ -1,1 +1,0 @@
-A target guess program in C. 

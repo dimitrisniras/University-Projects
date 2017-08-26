@@ -1,1 +1,0 @@
-Parallel implementation of bitonic sort using three different ways: PThreads, OpenMP and CilkPlus.

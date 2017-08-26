@@ -1,1 +1,0 @@
-Parallel implementation of knn algorithm using MPI. Serial algorithm is also made by me.
