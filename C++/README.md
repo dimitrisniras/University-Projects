@@ -1,1 +1,1 @@
-### Projects and works based on C++.
+Projects and works based on C++.
