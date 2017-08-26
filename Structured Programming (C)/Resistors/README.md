@@ -1,0 +1,1 @@
+A simple C program that splits resistors to classes given the values of resistors, number of resistors and voltage. It also prints the value of final resistor if resistors of first class connect in series and resistors of second class connect in parallel.

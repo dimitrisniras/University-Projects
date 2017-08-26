@@ -1,0 +1,107 @@
+.include "m16def.inc"
+.cseg
+
+.def temp = r16
+.def holder1L = r17
+.def result = r18
+.def counter = r19
+.def holder2L = r20
+
+.org 0x0000
+	rjmp reset
+
+.org 0x000A
+	rjmp TIM1_CAPT
+
+reset:
+	ldi temp, high(RAMEND)
+	out SPH, temp
+	ldi temp, low(RAMEND)
+	out SPL, temp
+
+	;Set Input ICP1 to portD 
+	ldi temp,0b10111111
+	out DDRD, temp
+
+	;set Switches to portA 
+	ldi temp,0b01111110
+	out DDRA, temp
+
+	;set LEDs to portB
+	ldi temp,0b11111111
+	out DDRB, temp
+
+
+	;clear counter (counter's start value = 0)
+	clr temp
+	out TCNT1H, temp
+	out TCNT1L, temp
+
+
+	;clear ICR1
+	out ICR1H, temp
+	out ICR1L, temp
+
+	
+	;clear ACSR
+	out ACSR, temp
+
+
+	;Enable TICIE1 bit of TIMSK (pulse mode interupt)	
+	ldi temp, 1<<TICIE1
+	out TIMSK, temp
+
+	;set counter
+	ldi counter, 1
+
+
+	;enable interupts (StatusRegister{I} = 1)
+	sei
+
+
+	;set prescaler CK/64
+	ldi temp, 0b00000000
+	out TCCR1A, temp
+	ldi temp, 0b00000011
+	out TCCR1B, temp
+
+
+
+
+loop:
+	sbis PINA, 0
+	out PORTB, result
+	rjmp loop
+
+TIM1_CAPT:
+	cpi counter, 0
+	breq start_again
+	
+	cpi counter, 1
+	breq holdit1
+	
+	reti
+
+holdit1:
+	in holder1L, ICR1L
+	dec counter
+	reti
+
+start_again:
+	in holder2L, ICR1L
+	sub holder2L, holder1L
+	mov result, holder2L
+	com result
+
+	clr temp
+	out TCNT1H, temp
+	out TCNT1L, temp
+
+	out ICR1H, temp
+	out ICR1L, temp
+
+	out ACSR, temp
+
+	ldi counter, 1
+
+	reti
